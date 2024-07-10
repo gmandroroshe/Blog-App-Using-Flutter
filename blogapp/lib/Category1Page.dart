@@ -14,6 +14,13 @@ class Category1Page extends StatelessWidget {
             fontWeight: FontWeight.bold,
           ),
         ),
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back),
+          color: Colors.white,
+          onPressed: () {
+            Navigator.of(context).pop(); // Navigate back to previous screen
+          },
+        ),
         actions: [
           IconButton(
             icon: Icon(Icons.settings),
@@ -24,40 +31,29 @@ class Category1Page extends StatelessWidget {
           ),
         ],
       ),
-      body: Scaffold(
-        appBar: AppBar(
-          title: Text('Category 1 Page'),
-          leading: IconButton(
-            icon: Icon(Icons.arrow_back),
-            onPressed: () {
-              Navigator.of(context).pop(); // Navigate back to previous screen
-            },
-          ),
-        ),
-        body: Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              Text(
-                'This is Category 1 content.',
-                style: TextStyle(fontSize: 24.0),
-                textAlign: TextAlign.center,
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            Text(
+              'This is Category 1 content.',
+              style: TextStyle(fontSize: 24.0),
+              textAlign: TextAlign.center,
+            ),
+            SizedBox(height: 20.0),
+            Expanded(
+              child: ListView.builder(
+                itemCount: 10,
+                itemBuilder: (context, index) {
+                  return Padding(
+                    padding: const EdgeInsets.only(bottom: 16.0),
+                    child: buildLongBox('Long Box Content ${index + 1}'),
+                  );
+                },
               ),
-              SizedBox(height: 20.0),
-              Expanded(
-                child: ListView.builder(
-                  itemCount: 10,
-                  itemBuilder: (context, index) {
-                    return Padding(
-                      padding: const EdgeInsets.only(bottom: 16.0),
-                      child: buildLongBox('Long Box Content ${index + 1}'),
-                    );
-                  },
-                ),
-              ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );
